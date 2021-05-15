@@ -1,2 +1,3 @@
-# presence.toughlovearena.com
-Simple presence server
+# fighter-presence
+
+POC for docker app
