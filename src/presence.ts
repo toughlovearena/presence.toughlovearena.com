@@ -20,7 +20,9 @@ export interface TimeKeeper {
 export class PresenceTracker {
   readonly TTL = 5 * 60 * 1000; // 5 minutes
   private readonly lookup: PresenceLookup = {};
-  private readonly tally: PresenceTally = {};
+  private readonly tally: PresenceTally = {
+    welcome: 0,
+  };
   private readonly tk: TimeKeeper;
 
   constructor(tk?: TimeKeeper) {
