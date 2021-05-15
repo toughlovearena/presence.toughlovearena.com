@@ -16,11 +16,20 @@ describe('presence', () => {
     pt = new PresenceTracker(tk);
   });
 
+  test('defaultTally is not empty', () => {
+    expect(Object.keys(pt.defaultTally).length).toBe(1);
+    expect(Object.values(pt.defaultTally)).toStrictEqual([0]);
+    expect(pt.get()).toStrictEqual({
+      ...pt.defaultTally,
+    });
+  });
+
   test('ping / purge / get', () => {
     pt.ping({ id: 'a', ptype: 'foo', });
     pt.ping({ id: 'b', ptype: 'bar', });
     pt.purge();
     expect(pt.get()).toStrictEqual({
+      ...pt.defaultTally,
       foo: 1,
       bar: 1,
     });
@@ -29,6 +38,7 @@ describe('presence', () => {
     pt.ping({ id: 'c', ptype: 'foo', });
     pt.purge();
     expect(pt.get()).toStrictEqual({
+      ...pt.defaultTally,
       foo: 2,
       bar: 1,
     });
@@ -37,6 +47,7 @@ describe('presence', () => {
     pt.ping({ id: 'a', ptype: 'baz', });
     pt.purge();
     expect(pt.get()).toStrictEqual({
+      ...pt.defaultTally,
       foo: 1,
       bar: 1,
       baz: 1,
@@ -45,6 +56,7 @@ describe('presence', () => {
     tk._increment(pt.TTL / 3 + 1);
     pt.purge();
     expect(pt.get()).toStrictEqual({
+      ...pt.defaultTally,
       foo: 1,
       bar: 0,
       baz: 1,
