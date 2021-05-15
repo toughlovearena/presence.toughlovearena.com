@@ -1,3 +1,5 @@
-# fighter-presence
+# presence.toughlovearena.com
 
-POC for docker app
+Standalone server for tracking player activity
+
+https://presence.toughlovearena.com
