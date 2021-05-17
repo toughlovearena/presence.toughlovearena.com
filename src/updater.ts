@@ -2,7 +2,7 @@ import childProcess from 'child_process';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 export class Updater {
-  private readonly timeout = 1 * 5 * 1000; // 1 minute
+  private readonly timeout = 1 * 60 * 1000; // 1 minute
   private rebuilding = false;
 
   async run() {
