@@ -6,7 +6,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "ps": "netstat -lnp | grep 2999",
+    "ps": "netstat -lnp | grep 2700",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "clean": "rimraf dist/*",
     "tsc": "tsc",

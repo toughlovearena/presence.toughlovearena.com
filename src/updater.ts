@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import childProcess from 'child_process';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 export class Updater {
@@ -10,9 +10,13 @@ export class Updater {
 
     const sg: SimpleGit = simpleGit();
     const pullResult = await sg.pull();
-    if (pullResult.summary.changes > 0) {
+    const changes = (pullResult.summary.changes > 0);
+
+    if (changes) {
       this.rebuilding = true;
-      exec('npm run rebuild');
+      await childProcess.spawn('npm run rebuild', {
+        detached: true,
+      });
     }
   }
 
