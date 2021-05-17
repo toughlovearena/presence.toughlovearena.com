@@ -16,8 +16,9 @@
     "watch": "nodemon",
     "bg": "forever start dist/index.js",
     "kill": "forever stop dist/index.js",
-    "update": "git pull && npm i",
+    "update": "git checkout prod && git pull && npm i",
     "rebuild": "npm-run-all update build kill bg",
+    "setup": "npm-run-all update build bg",
     "test": "jest --detectOpenHandles",
     "ci-test": "jest --detectOpenHandles --runInBand"
   },
