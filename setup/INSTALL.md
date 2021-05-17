@@ -47,6 +47,6 @@ nvm install 10.6
 
 git clone https://github.com/toughlovearena/presence.toughlovearena.com.git
 cd presence.toughlovearena.com
-npm i
+npm run setup
 
 ```
