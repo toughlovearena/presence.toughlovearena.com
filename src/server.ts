@@ -15,9 +15,11 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
 
+    const started = new Date();
     this.app.get('/health', (req, res) => {
       const data = {
         gitHash,
+        started,
         envs: envs.map(env => ({
           label: env.label,
           path: env.path,

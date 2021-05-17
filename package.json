@@ -6,7 +6,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "ps": "netstat -lnp | grep 2999",
+    "ps": "netstat -lnp | grep 2700",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "clean": "rimraf dist/*",
     "tsc": "tsc",
@@ -16,7 +16,7 @@
     "watch": "nodemon",
     "bg": "forever start dist/index.js",
     "kill": "forever stop dist/index.js",
-    "update": "git checkout prod && git pull && npm i",
+    "update": "git checkout main && git pull && npm i",
     "rebuild": "npm-run-all update build kill bg",
     "setup": "npm-run-all update build bg",
     "test": "jest --detectOpenHandles",
