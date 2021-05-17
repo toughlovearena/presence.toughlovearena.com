@@ -1,12 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import fs from 'fs';
 import { PresenceTracker } from './presence';
-
-interface Version {
-  v: number;
-  u: number;
-}
 
 export interface ServerEnv {
   label: string;
@@ -17,18 +11,18 @@ export interface ServerEnv {
 export class Server {
   private app = express();
 
-  constructor(envs: ServerEnv[]) {
+  constructor(gitHash: string, envs: ServerEnv[]) {
     this.app.use(cors());
     this.app.use(express.json());
 
     this.app.get('/health', (req, res) => {
-      const versionStr = fs.readFileSync('version.json').toString();
-      const version = JSON.parse(versionStr) as Version;
-      const data = envs.map(env => ({
-        label: env.label,
-        path: env.path,
-        version: version.v,
-      }));
+      const data = {
+        gitHash,
+        envs: envs.map(env => ({
+          label: env.label,
+          path: env.path,
+        })),
+      };
       res.send(data);
     });
 
