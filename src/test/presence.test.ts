@@ -1,4 +1,4 @@
-import { PresenceTracker, TimeKeeper } from "./presence";
+import { PresenceTracker, TimeKeeper } from "../presence";
 
 export class FakeTimeKeeper implements TimeKeeper {
   private state = 0;
