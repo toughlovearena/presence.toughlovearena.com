@@ -1,22 +1,19 @@
+import { exec } from 'child_process';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 export class Updater {
-  readonly timeout = 1 * 60 * 1000; // 1 minute
-  private readonly gitHash: string;
+  private readonly timeout = 1 * 60 * 1000; // 1 minute
+  private rebuilding = false;
 
-  constructor(gitHash: string) {
-    this.gitHash = gitHash;
-  }
+  async run() {
+    if (this.rebuilding) { return; }
 
-  run() {
     const sg: SimpleGit = simpleGit();
-    // sg.exec(() => console.log('Starting pull...'))
-    //   .pull((err, update) => {
-    //     if (update && update.summary.changes) {
-    //       require('child_process').exec('npm restart');
-    //     }
-    //   })
-    //   .exec(() => console.log('pull done.'));
+    const pullResult = await sg.pull();
+    if (pullResult.summary.changes > 0) {
+      this.rebuilding = true;
+      exec('npm run rebuild');
+    }
   }
 
   cron() {

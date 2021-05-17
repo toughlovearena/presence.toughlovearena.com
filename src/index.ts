@@ -19,5 +19,5 @@ import { Updater } from './updater';
 
   // start presence server
   new Server(gitHash, envs).listen(2700);
-  new Updater(gitHash).cron();
+  new Updater().cron();
 })();
