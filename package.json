@@ -2,6 +2,8 @@
   "name": "presence.toughlovearena.com",
   "version": "1.0.0",
   "description": "",
+  "author": "toughlovearena@gmail.com",
+  "license": "MIT",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -22,8 +24,6 @@
     "test": "jest --detectOpenHandles",
     "ci-test": "jest --detectOpenHandles --runInBand"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",

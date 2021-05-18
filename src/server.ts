@@ -12,10 +12,10 @@ export class Server {
   private app = express();
 
   constructor(gitHash: string, envs: ServerEnv[]) {
+    const started = new Date();
     this.app.use(cors());
     this.app.use(express.json());
 
-    const started = new Date();
     this.app.get('/health', (req, res) => {
       const data = {
         gitHash,
