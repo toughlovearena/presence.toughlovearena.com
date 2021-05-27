@@ -1,7 +1,7 @@
+import { Updater } from '@toughlovearena/updater';
 import simpleGit from 'simple-git';
 import { PresenceTracker } from './presence';
 import { Server, ServerEnv } from './server';
-import { Updater } from './updater';
 
 (async () => {
   const gitLog = await simpleGit().log();
