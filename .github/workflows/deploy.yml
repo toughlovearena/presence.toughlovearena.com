@@ -43,4 +43,4 @@ jobs:
       run: npm run ci-test
 
     - name: Deploy
-      run: git push -f origin HEAD:prod
+      # run: git push -f origin HEAD:prod
