@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import simpleGit from 'simple-git';
 import { PresenceTracker } from './presence';
 
 export interface ServerEnv {
@@ -16,11 +17,13 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
 
-    this.app.get('/health', (req, res) => {
+    this.app.get('/health', async (req, res) => {
+      const gitStatus = await simpleGit().status();
       const data = {
         gitHash,
         started,
         testid: 0,
+        behind: gitStatus.behind,
         envs: envs.map(env => ({
           label: env.label,
           path: env.path,
