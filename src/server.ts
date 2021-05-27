@@ -22,7 +22,7 @@ export class Server {
       const data = {
         gitHash,
         started,
-        testid: 1,
+        testid: 2,
         behind: gitStatus.behind,
         envs: envs.map(env => ({
           label: env.label,
