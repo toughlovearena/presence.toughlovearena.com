@@ -2,6 +2,8 @@
 
 how to setup on unbuntu
 
+v3
+
 ### setup nginx
 
 ```bash
@@ -50,7 +52,3 @@ cd presence.toughlovearena.com
 npm run setup
 
 ```
-
-### test
-
-2
