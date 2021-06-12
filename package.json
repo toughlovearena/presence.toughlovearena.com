@@ -8,7 +8,6 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "ps": "netstat -lnp | grep 2700",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "clean": "rimraf dist/*",
     "tsc": "tsc",
@@ -16,12 +15,13 @@
     "prestart": "npm-run-all lint build",
     "start": "node dist/index.js",
     "watch": "nodemon",
-    "bg": "nohup node dist/index.js > /dev/null 2>&1 &",
+    "bg": "npx @toughlovearena/updater",
+    "kill": "forever stop dist/index.js",
     "test": "jest --detectOpenHandles",
     "ci-test": "jest --detectOpenHandles --runInBand"
   },
   "dependencies": {
-    "@toughlovearena/updater": "^1.1.0",
+    "@toughlovearena/updater": "^2.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "simple-git": "^2.39.0"
