@@ -1,6 +1,6 @@
+import { Updater } from '@toughlovearena/updater';
 import cors from 'cors';
 import express from 'express';
-import simpleGit from 'simple-git';
 import { PresenceTracker } from './presence';
 
 export interface ServerEnv {
@@ -12,18 +12,16 @@ export interface ServerEnv {
 export class Server {
   private app = express();
 
-  constructor(gitHash: string, envs: ServerEnv[]) {
-    const started = new Date();
+  constructor(updater: Updater, envs: ServerEnv[]) {
     this.app.use(cors());
     this.app.use(express.json());
 
     this.app.get('/health', async (req, res) => {
-      const gitStatus = await simpleGit().status();
+      const gitHash = await updater.gitter.hash();
       const data = {
         gitHash,
-        started,
-        testId: 3,
-        behind: gitStatus.behind,
+        started: updater.startedAt,
+        testId: 0,
         envs: envs.map(env => ({
           label: env.label,
           path: env.path,

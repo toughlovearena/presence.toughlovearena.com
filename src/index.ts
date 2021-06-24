@@ -1,12 +1,8 @@
 import { Updater } from '@toughlovearena/updater';
-import simpleGit from 'simple-git';
 import { PresenceTracker } from './presence';
 import { Server, ServerEnv } from './server';
 
 (async () => {
-  const gitLog = await simpleGit().log();
-  const gitHash = gitLog.latest.hash;
-
   const envs: ServerEnv[] = [{
     label: 'prod',
     path: '',
@@ -18,6 +14,7 @@ import { Server, ServerEnv } from './server';
   }];
 
   // start presence server
-  new Server(gitHash, envs).listen(2700);
-  new Updater().cron();
+  const updater = new Updater();
+  new Server(updater, envs).listen(2700);
+  updater.cron();
 })();
