@@ -20,7 +20,7 @@ export class Server {
       const gitHash = await updater.gitter.hash();
       const data = {
         gitHash,
-        started: updater.startedAt,
+        started: new Date(updater.startedAt),
         testId: 0,
         envs: envs.map(env => ({
           label: env.label,
